@@ -11,6 +11,9 @@ class Book extends Model
     use HasFactory, SoftDeletes;
 
     protected $guarded = ['id'];
+    protected $casts = [
+        'published_at'=> 'datetime',
+    ];
 
     public function category()
     {

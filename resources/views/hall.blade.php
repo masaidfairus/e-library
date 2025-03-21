@@ -66,4 +66,9 @@
             @endforeach
         </div>
     </div>
+
+    {{-- Pagination --}}
+    <div class="mt-6">
+        {{ $books->links() }}
+    </div>
 @endsection
