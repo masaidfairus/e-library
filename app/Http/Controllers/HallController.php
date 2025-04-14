@@ -30,9 +30,10 @@ class HallController extends Controller
     }
 
     public function singleBook(Book $book)
-    {   
+    {
         $title = $book->name;
-        return dd($book);
+
+        return view('book', compact('title', 'book'));
     }
 
     public function bookAuthor(Author $author)

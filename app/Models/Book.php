@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Author;
+use App\Models\Category;
+
 
 class Book extends Model
 {
@@ -16,6 +19,11 @@ class Book extends Model
     ];
 
     protected $with = ['category', 'author'];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     public function scopeFilter($query, array $filters)
     {
@@ -37,7 +45,7 @@ class Book extends Model
 
     public function author()
     {
-        return $this->belongsTo(author::class);
+        return $this->belongsTo(Author::class);
     }
 
 }
