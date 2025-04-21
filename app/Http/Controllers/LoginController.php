@@ -22,7 +22,7 @@ class LoginController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $validateData = $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|email:dns|unique:users',
             'username' => 'required|unique:users|min:3|max:255',
@@ -30,9 +30,9 @@ class LoginController extends Controller
             'role' => 'required'
         ]);
 
-        $validatedData['password'] = Hash::make($validatedData['password']);
+        $validateData['password'] = Hash::make($validateData['password']);
 
-        User::create($validatedData);
+        User::create($validateData);
 
         return redirect('/login')->with('success', 'Registration successfully! Please login');
     }

@@ -20,6 +20,20 @@
                 <span class="text-sm">Category</span>
             </a>
         </li>
+        <li class="mb-1 group">
+            <a href="/dashboard/author"
+                class="{{ request()->is('dashboard/author') ? 'bg-gray-950 text-white' : '' }} flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
+                <i class="fa-duotone fa-solid fa-user-tie mr-3"></i>
+                <span class="text-sm">Author</span>
+            </a>
+        </li>
+        <li class="mb-1 group">
+            <a href="/dashboard/user"
+                class="{{ request()->is('dashboard/user') ? 'bg-gray-950 text-white' : '' }} flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
+                <i class="fa-solid fa-id-card mr-3"></i>
+                <span class="text-sm">User</span>
+            </a>
+        </li>
         {{-- <span class="text-gray-400 font-bold">PERSONAL</span>
         <li class="mb-1 group">
             <a href=""

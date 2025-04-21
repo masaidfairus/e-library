@@ -24,12 +24,12 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $validateData = $request->validate([
             'name' => 'required|max:255',
             'slug' => 'required|unique:categories',
         ]);
 
-        Category::create($validatedData);
+        Category::create($validateData);
 
         return redirect('/dashboard/category')->with('success', 'New category has been added!');
     }
@@ -52,9 +52,9 @@ class CategoryController extends Controller
             $rules['slug'] = 'required|unique:categories';
         }
 
-        $validatedData = $request->validate($rules);
+        $validateData = $request->validate($rules);
 
-        Category::where('id', $category->id)->update($validatedData);
+        Category::where('id', $category->id)->update($validateData);
 
         return redirect('/dashboard/category')->with('success', 'Category has been updated!');
     }
