@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -42,9 +43,11 @@ class UserController extends Controller
             "password" => "required|min:8",
         ]);
 
+        $validateData['password'] = Hash::make($validateData['password']);
+
         User::create($validateData);
 
-        return redirect('/dashboard/user', )->with('success', 'User created successfully');
+        return redirect('/dashboard/user', )->with('success', 'User created successfully!');
     }
 
     /**
@@ -58,24 +61,47 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        $title = "User | Edit";
+
+        return view('dashboard.user.edit', compact('title', 'user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $rules = [
+            "name" => "required|max:255",
+            "password" => "required|min:8",
+            "role" => "required"
+        ];
+
+        if ($request->slug != $user->slug) {
+            $rules['slug'] = "required|unique:users";
+        }
+
+        if ($request->email != $user->email) {
+            $rules['email'] = "required|email|unique:users";
+        }
+
+        $validateData = $request->validate($rules);
+
+        User::where('id', $user->id)->update($validateData);
+
+        return redirect('/dashboard/user', )->with('success', 'User updated successfully!');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+        User::destroy($user->id);
+
+        return redirect('/dashboard/user', )->with('success', 'User deleted successfully!');
     }
 }

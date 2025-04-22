@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HallController;
 use App\Http\Controllers\HomeController;
@@ -43,4 +44,5 @@ Route::prefix('dashboard')->middleware(['auth', 'isAdmin'])->group(function () {
 
     Route::resource('author', AuthorController::class);
     Route::resource('user', UserController::class);
+    Route::resource('book', BookController::class);
 });

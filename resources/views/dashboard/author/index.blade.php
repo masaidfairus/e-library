@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="grid grid-cols-12 gap-4">
-        <div class="col-span-12 lg:col-span-9 p-4">
+        <div class="col-span-12 lg:col-span-11 p-4">
             @if (session()->has('success'))
                 <p class="mb-5 rounded-lg bg-green-100 px-6 py-5 text-sm text-green-800 border border-green-300" role="alert">
                     {{ session('success') }}
@@ -14,7 +14,7 @@
     </div>
 
     <div class="grid grid-cols-12 gap-4">
-        <div class="col-span-12 lg:col-span-9 p-4">
+        <div class="col-span-12 lg:col-span-11 p-4">
             <div class="relative overflow-x-auto">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
