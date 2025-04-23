@@ -37,7 +37,7 @@
         <li class="mb-1 group">
             <a href="/dashboard/book"
                 class="{{ request()->is('dashboard/book') ? 'bg-gray-950 text-white' : '' }} flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
-                <i class="fa-solid fa-books"></i>
+                <i class="fa-solid fa-books mr-3"></i>
                 <span class="text-sm">Book</span>
             </a>
         </li>
