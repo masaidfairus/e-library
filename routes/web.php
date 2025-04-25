@@ -31,6 +31,7 @@ Route::post('/registration', [LoginController::class, 'store']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::post('/borrow', [BorrowController::class, 'store']);
+Route::get('/borrow/{user:slug}', [BorrowController::class, 'userIndex'])->middleware('auth');
 
 Route::prefix('dashboard')->middleware(['auth', 'isAdmin'])->group(function () {
 
@@ -48,4 +49,9 @@ Route::prefix('dashboard')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::resource('author', AuthorController::class);
     Route::resource('user', UserController::class);
     Route::resource('book', BookController::class);
+
+    Route::get('/borrow', [BorrowController::class, 'index']);
+    Route::get('/borrow/{borrow}/edit', [BorrowController::class, 'edit']);
+    Route::put('/borrow/{borrow}', [BorrowController::class, 'update']);
+    Route::delete('/borrow/{borrow}', [BorrowController::class, 'destroy']);
 });

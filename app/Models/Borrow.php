@@ -14,6 +14,11 @@ class Borrow extends Model
 
     protected $with = ['book', 'user'];
 
+    protected $casts = [
+        'borrow_date' => 'date',
+        'due_date' => 'date'
+    ];
+
     public function book()
     {
         return $this->belongsTo(Book::class);

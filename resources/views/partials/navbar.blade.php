@@ -17,6 +17,11 @@
                         <a href="/hall"
                             class="rounded-md px-3 py-2 text-sm font-medium {{ request()->is('hall*') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}"
                             aria-current="page">Hall</a>
+                        @auth
+                            <a href="/borrow/{{ auth()->user()->slug }}"
+                                class="rounded-md px-3 py-2 text-sm font-medium {{ request()->is('borrow*') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}"
+                                aria-current="page">Borrow</a>
+                        @endauth
 
                         <a href="/about"
                             class="rounded-md px-3 py-2 text-sm font-medium {{ request()->is('about*') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}"
@@ -63,8 +68,8 @@
                                 <p class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
                                     id="user-menu-item-0">{{ auth()->user()->name }}</p>
                                 @if (auth()->user()->role == "admin")
-                                    <a href="/dashboard" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                                        id="user-menu-item-1">Dashboard</a>
+                                    <a href="/dashboard" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
+                                        tabindex="-1" id="user-menu-item-1">Dashboard</a>
                                 @endif
                                 <form action="/logout" method="post">
                                     @csrf
@@ -114,6 +119,12 @@
                     class="block rounded-md px-3 py-2 text-base font-medium {{ request()->is('hall*') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}"
                     aria-current="page">Hall</a>
 
+                @auth
+                    <a href="/borrow/{{ auth()->user()->slug }}"
+                        class="block rounded-md px-3 py-2 text-base font-medium {{ request()->is('borrow*') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}"
+                        aria-current="page">Borrow</a>
+                @endauth
+                
                 <a href="/about"
                     class="block rounded-md px-3 py-2 text-base font-medium {{ request()->is('about*') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}"
                     aria-current="page">About Us</a>
@@ -144,7 +155,8 @@
                 <div class="mt-3 space-y-1 px-2">
                     <form action="/logout" method="post">
                         @if (auth()->user()->role == "admin")
-                            <a href="/dashboard" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Dashboard</a>
+                            <a href="/dashboard"
+                                class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Dashboard</a>
                         @endif
                         @csrf
                         <button type="submit"

@@ -80,6 +80,11 @@
                         @endforeach
                     </tbody>
                 </table>
+
+                {{-- Pagination --}}
+                <div class="mt-6">
+                    {{ $users->links() }}
+                </div>
             </div>
         </div>
     </div>
