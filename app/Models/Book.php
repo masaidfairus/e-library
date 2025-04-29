@@ -4,14 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Author;
 use App\Models\Category;
 
 
 class Book extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $guarded = ['id'];
     protected $casts = [
