@@ -29,39 +29,41 @@
                 {!! $book->body !!}
             </article>
 
-            <a href="/hall" class="inline-block text-blue-500 hover:underline mt-4">← Back to hall</a>
+            <div class="flex justify-between items-center mt-2">
+                <a href="/hall" class="inline-block text-blue-500 hover:underline">← Back to hall</a>
 
-            @auth
-                @if ($book->status == 1)
-                    <a href="" onclick="alert('Buku sedang dipinjam')"
+                @auth
+                    @if ($book->status == 1)
+                        <a href="#" onclick="alert('Buku sedang dipinjam')"
+                            class="inline-flex items-center gap-2 rounded-md bg-emerald-600 px-4 py-2 font-semibold text-white shadow
+                                        hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
+                            <i class="fa-solid fa-book-open-reader"></i>
+                            Pinjam Buku
+                        </a>
+                    @else
+                        <form action="/borrow" method="POST">
+                            @csrf
+
+                            <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                            <input type="hidden" name="book_id" value="{{ $book->id }}">
+
+                            <button type="submit"
+                                class="inline-flex items-center gap-2 rounded-md bg-emerald-600 px-4 py-2 font-semibold text-white shadow
+                                            hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
+                                <i class="fa-solid fa-book-open-reader"></i>
+                                Pinjam Buku
+                            </button>
+                        </form>
+                    @endif
+                @else
+                    <a href="/login"
                         class="inline-flex items-center gap-2 rounded-md bg-emerald-600 px-4 py-2 font-semibold text-white shadow
-                            hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
+                                hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
                         <i class="fa-solid fa-book-open-reader"></i>
                         Pinjam Buku
                     </a>
-                @else
-                    <form action="/borrow" method="POST">
-                        @csrf
-
-                        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-                        <input type="hidden" name="book_id" value="{{ $book->id }}">
-
-                        <button type="submit"
-                            class="inline-flex items-center gap-2 rounded-md bg-emerald-600 px-4 py-2 font-semibold text-white shadow
-                                hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
-                            <i class="fa-solid fa-book-open-reader"></i>
-                            Pinjam Buku
-                        </button>
-                    </form>
-                @endif
-            @else
-                <a href="/login"
-                    class="inline-flex items-center gap-2 rounded-md bg-emerald-600 px-4 py-2 font-semibold text-white shadow
-                        hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
-                    <i class="fa-solid fa-book-open-reader"></i>
-                    Pinjam Buku
-                </a>
-            @endauth
+                @endauth
+            </div>
         </div>
     </div>
 @endsection

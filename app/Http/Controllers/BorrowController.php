@@ -28,7 +28,8 @@ class BorrowController extends Controller
         $book->status = 1;
         $book->save();
 
-        return redirect('/borrow/{$user->slug}')->with('success', 'Borrowed book has been added!');
+        $user = User::find($request->user_id);
+        return redirect("/borrow/{$user->slug}")->with('success', 'Borrowed book has been added!');
     }
 
     public function index()

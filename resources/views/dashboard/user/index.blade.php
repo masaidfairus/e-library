@@ -14,7 +14,7 @@
     </div>
 
     <div class="grid grid-cols-12 gap-4">
-        <div class="col-span-12 lg:col-span-11 p-4">
+        <div class="col-span-12 lg:col-span-12 p-4">
             <div class="relative overflow-x-auto">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
